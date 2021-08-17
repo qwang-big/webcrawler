@@ -98,3 +98,7 @@ $("a.btn").not('.qq, .wechat, .weibo, .kugou').each(function(){
 await new Promise(r => setTimeout(r, 2000));
 ar = ar.filter((x, i, a) => a.indexOf(x) == i)
 ```
+## aichagu/gongshi
+```sh
+for f in *;do perl -ne '$b=1 if /<h1>/;$b=0 if /^\r\n/;if ($b){s/<.*?>//g;s/&gt;/>/g;s/&lt;/</g;s/&nbsp;/ /g;s/&amp;/&/g;print}' $f > $f.txt;done
+```
