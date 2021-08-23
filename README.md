@@ -104,5 +104,5 @@ for f in *;do perl -ne '$b=1 if /<h1>/;$b=0 if /^\r\n/;if ($b){s/<.*?>//g;s/&gt;
 perl -ne 's/\r\n//;next if /^2020/ or /^{.*}\s*$/;$s.="$_ ";if (/^\s+/ or /;\s*$/){print $s,"\n";$s=""}' all > all.1
 perl -ne 'next unless /:/ or /^\s+/;s/,\s*\w*(STICK|POINT|LINE|COLOR|NODRAW)\w*//g;print' all.1 > all.txt
 sed -i 's/  \+/ /g;s/; *$/;/' all.txt
-perl -ne 'chomp;next if /^2020\/\d/ or /^\s+$/;if(/^\t+(\S+)/){if ($i%50==0){$d++;close O;open(O,">d$d.txt")}print O "B:=;\r\nD:=10;\r\nN:=5;\r\nENTERLONG: B;\r\nEXITLONG: BARSLAST(B)=D OR C/REF(C,BARSLAST(B)-1)*100>N;\r\n{$1}\r\n";$i++;next}print O "$_\r\n"' all.txt
+perl -ne 'chomp;next if /^2020\/\d/ or /^\s+$/;if(/^\t+(\S+)/){$k=$1;if ($i%50==0){$d++;close O;open(O,">d$d.txt")}print O $s,"ENTERLONG: ;\r\nEXITLONG: ;\r\n" unless $s=~/zig/i or /peak/i or /trough/i;$i++;$s="{$k}\r\n";next}$s.="$_\r\n"' all.txt
 ```
